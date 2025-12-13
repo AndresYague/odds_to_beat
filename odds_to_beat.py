@@ -54,11 +54,10 @@ def main() -> None:
     index = np.searchsorted(dice, challenge, side="left")
 
     # Calculate probabilities
-    percent = max(min(float((1 - index / n_tries)) *
-                  100, max_probability), min_probability)
+    probability = max(min(float((1 - index / n_tries)) *
+                          100, max_probability), min_probability)
 
-    s = f"The probability of beating the odds is {percent:.2f}%"
-    print(s)
+    print(f"The probability of beating the odds is {probability:.2f}%")
 
 
 if __name__ == "__main__":
