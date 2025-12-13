@@ -32,6 +32,12 @@ def main() -> None:
     n_tries = int(1e6)
     die_type = 20
 
+    # Maximum probability (e.g. if critical failures are allowed)
+    max_probability = 95
+
+    # Minimum probability (e.g. if critical successes are allowed)
+    min_probability = 5
+
     print(f"Using a d{die_type}")
     challenge = int(input("Input difficulty class: "))
 
@@ -50,7 +56,9 @@ def main() -> None:
     index = np.searchsorted(dice, challenge, side="left")
 
     # Calculate probabilities
-    percent = (1 - index / n_tries) * 100
+    percent = max(min(float((1 - index / n_tries)) *
+                  100, max_probability), min_probability)
+
     s = f"The probability of beating the odds is {percent:.2f}%"
     print(s)
 
