@@ -14,10 +14,8 @@ def parse_help(help_str: str) -> dict[str, list[int]]:
     # TODO: Maybe check for correct input?
     for help in help_list:
         if "d" in help:
-            number, _type = help.split("d")
-            int_number = int(number)
-            int_type = int(_type)
-            parsed["dice"] += [int_type for i in range(int_number)]
+            number, _type = [int(x) for x in help.split("d")]
+            parsed["dice"] += [_type for i in range(number)]
         else:
             parsed["flat"].append(int(help))
 
@@ -39,7 +37,7 @@ def main() -> None:
     min_probability = 5
 
     print(f"Using a d{die_type}")
-    challenge = int(input("Input difficulty class: "))
+    challenge = int(input("Input DC: "))
 
     # Cast the dice and sort
     dice = np.random.choice(die_type, size=n_tries) + 1
