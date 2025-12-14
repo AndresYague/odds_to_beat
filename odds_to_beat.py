@@ -38,9 +38,17 @@ def main() -> None:
 
     print(f"Using a d{die_type}")
     challenge = int(input("Input DC: "))
+    advantage_str = input("Advantage or disadvantage (a/d)? Leave blank if none: ")
+    double_dice = advantage_str == "a" or advantage_str == "d"
 
     # Cast the dice and sort
     dice = np.random.choice(die_type, size=n_tries) + 1
+    if double_dice:
+        dice_second = np.random.choice(die_type, size=n_tries) + 1
+        if advantage_str == "a":
+            dice = np.maximum(dice, dice_second)
+        else:
+            dice = np.minimum(dice, dice_second)
 
     help_list = parse_help(input("Add the bonifiers separated by spaces: "))
 
