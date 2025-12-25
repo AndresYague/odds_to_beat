@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import numpy as np
 
 
@@ -38,7 +40,8 @@ def main() -> None:
 
     print(f"Using a d{die_type}")
     challenge = int(input("Input DC: "))
-    advantage_str = input("Advantage or disadvantage (a/d)? Leave blank if none: ")
+    advantage_str = input(
+        "Advantage or disadvantage (a/d)? Leave blank if none: ")
     double_dice = advantage_str == "a" or advantage_str == "d"
 
     # Cast the dice and sort
